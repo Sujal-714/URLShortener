@@ -3,9 +3,12 @@ import cookieParser from "cookie-parser";
 import linkRouter from "./routes/linkRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 import codeRouter from "./routes/codeRoutes.js";
+import metricRouter from "./routes/metricsRoutes.js";
+import { metricsMiddleware } from "./middlewares/metrics.js";
 
 const app = express();
 
+app.use(metricsMiddleware);
 app.use(express.json());
 app.use(cookieParser());
 
@@ -13,8 +16,10 @@ app.get("/health", (req, res) => {
   res.json({ message: "Server is running" });
 });
 
+app.use("/metrics", metricRouter);
 app.use("/links", linkRouter);
 app.use("/users", userRouter);
 app.use("/codes", codeRouter);
+
 
 export default app;
