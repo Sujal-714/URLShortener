@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createLinkHandler, deleteLinkHandler, getLinksHandler } from "../controllers/linkContoller.js";
+import { createLinkHandler, deleteLinkHandler, getLinksHandler } from "../controllers/linkController.js";
 import { authenticate } from "../middlewares/auth.js";
 import { optionalAuthenticate } from "../middlewares/optionalAuth.js";
 import { createLinkLimiter } from "../middlewares/rateLimiter.js";
